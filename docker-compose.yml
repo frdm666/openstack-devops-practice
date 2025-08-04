@@ -11,6 +11,8 @@ services:
       MYSQL_PASSWORD: sasaimasai666
     networks:
       - backend
+    volumes:
+      - mysql-data:/var/lib/mysql
 
   wordpress:
     image: wordpress:latest
@@ -22,9 +24,12 @@ services:
       WORDPRESS_DB_USER: wp_user
       WORDPRESS_DB_PASSWORD: sasaimasai666
       WORDPRESS_DB_NAME: wp_db
+      WORDPRESS_CONFIG_EXTRA: define('WP_HOME', 'http://45.144.51.52:8080'); define('WP_SITEURL', 'http://45.144.51.52:8080');
     networks:
       - backend
       - frontend
+    volumes:
+      - wp-data:/var/www/html
 
   nginx:
     image: nginx:latest
@@ -41,3 +46,7 @@ services:
 networks:
   backend:
   frontend:
+
+volumes:
+  mysql-data:
+  wp-data:
