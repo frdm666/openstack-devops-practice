@@ -15,7 +15,7 @@ services:
       - mysql-data:/var/lib/mysql
 
   wordpress:
-    image: wordpress:latest
+    image: frdm666/custom-wordpress
     restart: always
     depends_on:
       - db
